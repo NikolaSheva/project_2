@@ -1,0 +1,22 @@
+{% extends "base/base.html" %}
+{% load blog_extras %}
+{% block title %}My Blog{% endblock %}
+{% block content %}
+    <div class="container text-center">
+        <h1 class="text-center text-muted mt-3">My Blog</h1>
+        <h2 class="h4">Найдено: {{ page_obj.paginator.count }}
+            {{ page_obj.paginator.count|pluralize_ru }}</h2>
+
+        {% for post in posts %}
+            <div class="post-preview mb-4">
+                <h2>
+                    <a href="{{ post.get_absolute_url }}">
+                        {{ post.title }}
+                    </a>
+                </h2>
+                <p class="date">Published {{ post.publish|date:"F j, Y" }} by {{ post.author }}</p>
+                {{ post.body|truncatewords:10|linebreaks|safe }}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

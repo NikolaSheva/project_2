@@ -1,0 +1,14 @@
+<footer class="bg-light py-4 mt-auto">
+    <div class="container">
+        {% block footer %}
+            {% if page_obj %}  {# Добавляем пагинацию только если есть page_obj #}
+                {% include "pagination.html" with page=page_obj %}
+            {% endif %}
+            <h6 class="text-center text-muted mt-4" style="font-size:.8rem;">2025 This is my blog.</h6>
+        {% endblock %}
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>

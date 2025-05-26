@@ -1,0 +1,44 @@
+{% extends "base/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Share a post{% endblock %}
+
+{% block content %}
+    <div class="container w-50 " style="min-width: 300px; max_width: 500px;">
+        {% if sent %}
+            <h1 class="text-center m-2">E-mail successfully sent</h1>
+            <p>
+                "{{ post.title }}" was successfully sent to {{ form.cleaned_data.to }}.
+            </p>
+        {% else %}
+            <h1 class="text-primary text-start m-5" style="font-size: 24px; font-family: 'Georgia', serif;">
+            Share "{{ post.title }}" by e-mail</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type='submit' class='btn btn-primary d-block mx-auto'>Send e-mail</button>
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}
+
+
+
+{#{% extends "base/base.html" %}#}
+{#{% block title %}Share a post{% endblock %}#}
+{#{% block content %}#}
+{#    {% if sent %}#}
+{#        <h1>E-mail successfully sent</h1>#}
+{#        <p>#}
+{#            "{{ post.title }}" was successfully sent to {{ form.cleaned_data.to }}.#}
+{#        </p>#}
+{#    {% else %}#}
+{#        <h1>Share "{{ post.title }}" by e-mail</h1>#}
+{#        <form method="post">#}
+{#        {% csrf_token %}#}
+{#        {{ form.as_p }}#}
+{#        {{ form|crispy }}#}
+{#            <input type="submit" value="Send e-mail">#}
+{#        </form>#}
+{#    {% endif %}#}
+{#{% endblock %#}
